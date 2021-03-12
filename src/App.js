@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import SongDetails from "./components/SongDetails";
+import { connect } from "react-redux";
+import "./styles/app.scss";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//& actions
+import { setCurrentSong } from "./actions";
+
+function App({ songsList, setCurrentSong, currentSong }) {
+	useEffect(() => {
+		setCurrentSong(songsList[0]);
+	}, []);
+
+	return (
+		<div className="container">
+			<SongDetails />
+		</div>
+	);
 }
 
-export default App;
+const mapStateToProp = (state) => {
+	return { songsList: state.songsList, currentSong: state.currentSong };
+};
+
+export default connect(mapStateToProp, { setCurrentSong })(App);
