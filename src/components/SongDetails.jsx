@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import { setCurrentSong } from "../actions";
 
 const SongDetails = ({ songsList, currentSong, setCurrentSong }) => {
-	if (!currentSong) return <div>Loading</div>;
+	if (!currentSong) return <div>Loading..</div>;
+
 	return (
 		<div className="song-container">
 			<img src={currentSong.cover} alt="songImage" />
