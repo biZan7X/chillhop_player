@@ -8,7 +8,11 @@ import {
 	faStepBackward,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Player = ({ currentSong }) => {
+const Player = ({ currentSong, audioRef }) => {
+	const onClickHandler = () => {
+		audioRef.current.play(); //current : audio
+	};
+
 	return (
 		<div className="player-container">
 			<div className="display">
@@ -19,7 +23,7 @@ const Player = ({ currentSong }) => {
 
 			<div className="controls">
 				<FontAwesomeIcon icon={faStepBackward} size="2x" />
-				<FontAwesomeIcon icon={faPlay} size="2x" />
+				<FontAwesomeIcon onClick={onClickHandler} icon={faPlay} size="2x" />
 				<FontAwesomeIcon icon={faStepForward} size="2x" />
 			</div>
 		</div>

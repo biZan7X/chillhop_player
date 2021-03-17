@@ -7,7 +7,12 @@ import Player from "./components/Player";
 import "./styles/app.scss";
 
 //& actions
-import { setCurrentSong } from "./actions";
+import {
+	setCurrentSong,
+	setCurrentTime,
+	setDuration,
+	setPercentage,
+} from "./actions";
 
 function App({ songsList, setCurrentSong, currentSong }) {
 	//*componentDidMount
@@ -15,19 +20,37 @@ function App({ songsList, setCurrentSong, currentSong }) {
 		setCurrentSong(songsList[0]);
 	}, []);
 
+	//*setting up the songInfos
+	const onTimeUpdateHandler = () => {
+		console.log(audioRef);
+	};
+
 	const audioRef = useRef();
 
 	return (
 		<div className="container">
 			<SongDetails />
-			<Player />
-			<audio ref={audioRef} src={currentSong}></audio>
+			<Player audioRef={audioRef} />
+			<audio
+				ref={audioRef}
+				onTimeUpdate={onTimeUpdateHandler}
+				src={currentSong ? currentSong.audio : null}
+			></audio>
 		</div>
 	);
 }
 
 const mapStateToProp = (state) => {
-	return { songsList: state.songsList, currentSong: state.currentSong };
+	return {
+		songsList: state.songsList,
+		currentSong: state.currentSong,
+		songInfo: state.songInfo,
+	};
 };
 
-export default connect(mapStateToProp, { setCurrentSong })(App);
+export default connect(mapStateToProp, {
+	setCurrentSong,
+	setCurrentTime,
+	setDuration,
+	setPercentage,
+})(App);
