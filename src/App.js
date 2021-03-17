@@ -14,7 +14,15 @@ import {
 	setPercentage,
 } from "./actions";
 
-function App({ songsList, setCurrentSong, currentSong }) {
+function App({
+	songsList,
+	setCurrentSong,
+	currentSong,
+	songInfo,
+	setCurrentTime,
+	setDuration,
+	setPercentage,
+}) {
 	//*componentDidMount
 	useEffect(() => {
 		setCurrentSong(songsList[0]);
@@ -22,7 +30,13 @@ function App({ songsList, setCurrentSong, currentSong }) {
 
 	//*setting up the songInfos
 	const onTimeUpdateHandler = () => {
-		console.log(audioRef);
+		setCurrentTime(audioRef.current.currentTime);
+		setDuration(audioRef.current.duration);
+
+		const percentage = Math.floor(
+			(songInfo.currentTime / songInfo.duration) * 100
+		);
+		setPercentage(percentage);
 	};
 
 	const audioRef = useRef();
@@ -33,6 +47,7 @@ function App({ songsList, setCurrentSong, currentSong }) {
 			<Player audioRef={audioRef} />
 			<audio
 				ref={audioRef}
+				onLoadedMetadata={onTimeUpdateHandler}
 				onTimeUpdate={onTimeUpdateHandler}
 				src={currentSong ? currentSong.audio : null}
 			></audio>

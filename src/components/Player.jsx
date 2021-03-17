@@ -8,17 +8,23 @@ import {
 	faStepBackward,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Player = ({ currentSong, audioRef }) => {
+const Player = ({ currentSong, audioRef, songInfo }) => {
 	const onClickHandler = () => {
 		audioRef.current.play(); //current : audio
+	};
+
+	const getTime = (time) => {
+		return (
+			Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
+		);
 	};
 
 	return (
 		<div className="player-container">
 			<div className="display">
-				<p>0:0</p>
+				<p>{getTime(songInfo.currentTime)}</p>
 				<input type="range" />
-				<p>3:00</p>
+				<p>{getTime(songInfo.duration)}</p>
 			</div>
 
 			<div className="controls">
@@ -31,7 +37,7 @@ const Player = ({ currentSong, audioRef }) => {
 };
 
 const mapStateToProp = (state) => {
-	return { currentSong: state.currentSong };
+	return { currentSong: state.currentSong, songInfo: state.songInfo };
 };
 
 export default connect(mapStateToProp)(Player);
