@@ -9,10 +9,12 @@ import {
 	faStepBackward,
 } from "@fortawesome/free-solid-svg-icons";
 //&actions
-import { setCurrentTime, setIsPlaying } from "../actions";
+import { setCurrentTime, setIsPlaying, setCurrentSong } from "../actions";
 
 const Player = ({
+	songsList,
 	currentSong,
+	setCurrentSong,
 	audioRef,
 	songInfo,
 	setCurrentTime,
@@ -41,6 +43,17 @@ const Player = ({
 		audioRef.current.currentTime = e.target.value;
 	};
 
+	const skipHandler = (direction) => {
+		const index = songsList.findIndex((ob) => ob.name === currentSong.name);
+
+		if (direction === "forward")
+			setCurrentSong(songsList[(index + 1) % songsList.length]);
+		else {
+			if (index === 0) setCurrentSong(songsList[songsList.length - 1]);
+			else setCurrentSong(songsList[index - 1]);
+		}
+	};
+
 	return (
 		<div className="player-container">
 			<div className="display">
@@ -56,13 +69,21 @@ const Player = ({
 			</div>
 
 			<div className="controls">
-				<FontAwesomeIcon icon={faStepBackward} size="2x" />
+				<FontAwesomeIcon
+					onClick={() => skipHandler("backward")}
+					icon={faStepBackward}
+					size="2x"
+				/>
 				<FontAwesomeIcon
 					onClick={onClickHandler}
 					icon={isplaying ? faPause : faPlay}
 					size="2x"
 				/>
-				<FontAwesomeIcon icon={faStepForward} size="2x" />
+				<FontAwesomeIcon
+					onClick={() => skipHandler("forward")}
+					icon={faStepForward}
+					size="2x"
+				/>
 			</div>
 		</div>
 	);
@@ -70,12 +91,15 @@ const Player = ({
 
 const mapStateToProp = (state) => {
 	return {
+		songsList: state.songsList,
 		currentSong: state.currentSong,
 		songInfo: state.songInfo,
 		isplaying: state.isplaying,
 	};
 };
 
-export default connect(mapStateToProp, { setCurrentTime, setIsPlaying })(
-	Player
-);
+export default connect(mapStateToProp, {
+	setCurrentTime,
+	setIsPlaying,
+	setCurrentSong,
+})(Player);

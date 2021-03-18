@@ -11,7 +11,7 @@ const currentSongReducer = (state = null, action) => {
 
 const songObject = {
 	currentTime: 0.0,
-	duration: 0.0,
+	duration: parseInt("0"),
 	percentage: parseInt("0"),
 };
 
