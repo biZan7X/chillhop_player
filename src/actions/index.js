@@ -26,3 +26,10 @@ export const setPercentage = (percentage) => {
 		payload: percentage,
 	};
 };
+
+export const setIsPlaying = (term) => {
+	return {
+		type: "setIsPlaying",
+		payload: term,
+	};
+};

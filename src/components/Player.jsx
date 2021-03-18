@@ -4,15 +4,27 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faPlay,
+	faPause,
 	faStepForward,
 	faStepBackward,
 } from "@fortawesome/free-solid-svg-icons";
 //&actions
-import { setCurrentTime } from "../actions";
+import { setCurrentTime, setIsPlaying } from "../actions";
 
-const Player = ({ currentSong, audioRef, songInfo, setCurrentTime }) => {
+const Player = ({
+	currentSong,
+	audioRef,
+	songInfo,
+	setCurrentTime,
+	isplaying,
+	setIsPlaying,
+}) => {
 	const onClickHandler = () => {
-		audioRef.current.play(); //current : audio
+		//current : audio
+		if (isplaying) audioRef.current.pause();
+		else audioRef.current.play();
+
+		setIsPlaying(!isplaying);
 	};
 
 	const getTime = (time) => {
@@ -45,7 +57,11 @@ const Player = ({ currentSong, audioRef, songInfo, setCurrentTime }) => {
 
 			<div className="controls">
 				<FontAwesomeIcon icon={faStepBackward} size="2x" />
-				<FontAwesomeIcon onClick={onClickHandler} icon={faPlay} size="2x" />
+				<FontAwesomeIcon
+					onClick={onClickHandler}
+					icon={isplaying ? faPause : faPlay}
+					size="2x"
+				/>
 				<FontAwesomeIcon icon={faStepForward} size="2x" />
 			</div>
 		</div>
@@ -53,7 +69,13 @@ const Player = ({ currentSong, audioRef, songInfo, setCurrentTime }) => {
 };
 
 const mapStateToProp = (state) => {
-	return { currentSong: state.currentSong, songInfo: state.songInfo };
+	return {
+		currentSong: state.currentSong,
+		songInfo: state.songInfo,
+		isplaying: state.isplaying,
+	};
 };
 
-export default connect(mapStateToProp, { setCurrentTime })(Player);
+export default connect(mapStateToProp, { setCurrentTime, setIsPlaying })(
+	Player
+);
