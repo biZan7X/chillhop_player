@@ -13,6 +13,7 @@ import {
 	setDuration,
 	setPercentage,
 } from "./actions";
+import { playAudio } from "./util";
 
 function App({
 	songsList,
@@ -22,6 +23,7 @@ function App({
 	setCurrentTime,
 	setDuration,
 	setPercentage,
+	isplaying,
 }) {
 	//*componentDidMount
 	useEffect(() => {
@@ -37,6 +39,12 @@ function App({
 			(songInfo.currentTime / songInfo.duration) * 100
 		);
 		setPercentage(percentage);
+
+		//* auto skip feature
+		const index = songsList.findIndex((ob) => ob.name === currentSong.name);
+		if (songInfo.currentTime && songInfo.currentTime === songInfo.duration)
+			setCurrentSong(songsList[(index + 1) % songsList.length]);
+		playAudio(isplaying, audioRef);
 	};
 
 	const audioRef = useRef();
@@ -60,6 +68,7 @@ const mapStateToProp = (state) => {
 		songsList: state.songsList,
 		currentSong: state.currentSong,
 		songInfo: state.songInfo,
+		isplaying: state.isplaying,
 	};
 };
 
