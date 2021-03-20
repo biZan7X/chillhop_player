@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { playAudio } from "../util";
 //& icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -52,6 +53,8 @@ const Player = ({
 			if (index === 0) setCurrentSong(songsList[songsList.length - 1]);
 			else setCurrentSong(songsList[index - 1]);
 		}
+
+		playAudio(isplaying, audioRef);
 	};
 
 	return (
