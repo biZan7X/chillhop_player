@@ -1,0 +1,58 @@
+.library {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 20rem;
+	overflow: scroll;
+	box-shadow: 2px 2px 50px rgb(221, 221, 221);
+	border-radius: 1rem;
+	background-color: white;
+
+	h1 {
+		margin: 2rem 1rem;
+		font-weight: bolder;
+	}
+
+	.song {
+		height: 15vh;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		padding: 1rem;
+		transition: background 0.5sec ease-in;
+		cursor: pointer;
+
+		img {
+			width: 30%;
+		}
+
+		&:hover {
+			background: rgb(235, 235, 235);
+		}
+
+		.details {
+			margin: 0rem 1rem;
+		}
+	}
+}
+
+/* The emerging W3C standard
+     that is currently Firefox-only */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
+}
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+	width: 5px;
+}
+*::-webkit-scrollbar-track {
+	background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+	background-color: rgba(155, 155, 155, 0.7);
+	border-radius: 20px;
+	border: transparent;
+}
