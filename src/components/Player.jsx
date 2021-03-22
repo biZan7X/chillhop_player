@@ -61,13 +61,27 @@ const Player = ({
 		<div className="player-container">
 			<div className="display">
 				<p>{getTime(songInfo.currentTime)}</p>
-				<input
-					min={0}
-					max={isNaN(songInfo.duration) ? 0 : songInfo.duration}
-					value={isNaN(songInfo.currentTime) ? 0 : songInfo.currentTime}
-					onChange={dragHandler}
-					type="range"
-				/>
+				<div
+					className="track"
+					style={{
+						background: `linear-gradient(to right,${currentSong.color[0]},${currentSong.color[1]})`,
+					}}
+				>
+					<input
+						min={0}
+						max={isNaN(songInfo.duration) ? 0 : songInfo.duration}
+						value={isNaN(songInfo.currentTime) ? 0 : songInfo.currentTime}
+						onChange={dragHandler}
+						type="range"
+					/>
+					<div
+						className="animate-track"
+						style={{
+							transform: `translate(${songInfo.percentage}%)`,
+						}}
+					></div>
+				</div>
+
 				<p>{getTime(songInfo.duration)}</p>
 			</div>
 

@@ -12,6 +12,42 @@
 			width: 100%;
 			cursor: pointer;
 			margin: 0rem 1rem;
+			-webkit-appearance: none;
+			background: transparent;
+		}
+
+		input[type="range"]:focus {
+			outline: none;
+		}
+
+		input[type="range"]::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			height: 1rem;
+			width: 1rem;
+			border-radius: 1rem;
+		}
+
+		.track {
+			width: 100%;
+			height: 0.75rem;
+			background: yellowgreen;
+			border-radius: 2rem;
+			display: flex;
+			overflow: hidden;
+			position: relative;
+			margin: 0rem 1rem;
+		}
+
+		.animate-track {
+			background: rgb(204, 204, 204);
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			border-radius: 2rem;
+			transform: translateX(3%);
+			pointer-events: none;
 		}
 	}
 
