@@ -33,3 +33,10 @@ export const setIsPlaying = (term) => {
 		payload: term,
 	};
 };
+
+export const setIsLibrary = (term) => {
+	return {
+		type: "setIsLibrary",
+		payload: term,
+	};
+};

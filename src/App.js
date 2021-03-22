@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import SongDetails from "./components/SongDetails";
 import Player from "./components/Player";
 import Library from "./components/Library";
+import Navbar from "./components/Navbar";
 import "./styles/app.scss";
 
 //& actions
@@ -52,6 +53,7 @@ function App({
 
 	return (
 		<div className="container">
+			<Navbar />
 			<SongDetails />
 			<Player audioRef={audioRef} />
 			<Library />

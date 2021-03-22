@@ -1,13 +1,18 @@
 import React from "react";
 import Lists from "./Lists";
+import { connect } from "react-redux";
 
-const Library = () => {
+const Library = ({ isLibrary }) => {
 	return (
-		<div className="library">
+		<div className={`library ${isLibrary ? "active" : ""}`}>
 			<h1>Library</h1>
 			<Lists />
 		</div>
 	);
 };
 
-export default Library;
+const mapStateToProps = (state) => {
+	return { isLibrary: state.isLibrary };
+};
+
+export default connect(mapStateToProps)(Library);

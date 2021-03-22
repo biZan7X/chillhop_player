@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 //& actions
 import { setCurrentSong } from "../actions";
 
-const Lists = ({ songsList, setCurrentSong }) => {
+const Lists = ({ songsList, currentSong, setCurrentSong }) => {
 	const renderlist = songsList.map((song) => {
 		return (
 			<div
 				key={song.id}
 				onClick={() => setCurrentSong(song)}
-				className="song"
+				className={`song`}
 			>
 				<img src={song.cover} alt="song cover" />
 				<div className="details">
@@ -24,7 +24,7 @@ const Lists = ({ songsList, setCurrentSong }) => {
 };
 
 const mapStateToProps = (state) => {
-	return { songsList: state.songsList };
+	return { songsList: state.songsList, currentSong: state.currentSong };
 };
 
 export default connect(mapStateToProps, { setCurrentSong })(Lists);

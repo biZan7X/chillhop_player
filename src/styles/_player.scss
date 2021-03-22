@@ -1,14 +1,12 @@
 .player-container {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	align-items: center;
 
 	.display {
 		display: flex;
-		justify-content: center;
 		align-items: center;
-		min-height: 20vh;
+		min-height: 10vh;
 		width: 50%;
 		input {
 			width: 100%;
@@ -25,5 +23,6 @@
 		svg {
 			cursor: pointer;
 		}
+		margin: 1rem 0rem;
 	}
 }

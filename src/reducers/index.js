@@ -32,9 +32,16 @@ const isPlayingReducer = (state = false, action) => {
 	return state;
 };
 
+const isLibraryReducer = (state = false, action) => {
+	if (action.type === "setIsLibrary") return action.payload;
+
+	return state;
+};
+
 export default combineReducers({
 	songsList: data, //* static data
 	currentSong: currentSongReducer,
 	songInfo: songInfoReducer,
 	isplaying: isPlayingReducer,
+	isLibrary: isLibraryReducer,
 });
