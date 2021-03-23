@@ -7,6 +7,7 @@ import Player from "./components/Player";
 import Library from "./components/Library";
 import Navbar from "./components/Navbar";
 import "./styles/app.scss";
+import DarkModeStyle from "./styles/DarkMode";
 
 //& actions
 import {
@@ -14,6 +15,7 @@ import {
 	setCurrentTime,
 	setDuration,
 	setPercentage,
+	setDarkMode,
 } from "./actions";
 import { playAudio } from "./util";
 
@@ -27,6 +29,8 @@ function App({
 	setPercentage,
 	isplaying,
 	isLibrary,
+	isDarkMode,
+	setDarkMode,
 }) {
 	//*componentDidMount
 	useEffect(() => {
@@ -52,11 +56,25 @@ function App({
 
 	const audioRef = useRef();
 
+	const mode = () => {
+		if (isDarkMode) return <DarkModeStyle />;
+		return null;
+	};
+
 	return (
-		<div className={`App ${isLibrary ? "library-active" : ""}`}>
+		<div className={`App ${isLibrary ? "library-active" : ""} `}>
+			{mode()}
 			<Navbar />
 			<SongDetails />
 			<Player audioRef={audioRef} />
+			<div className="btn-div">
+				<button
+					onClick={() => setDarkMode(!isDarkMode)}
+					className={`mode-btn ${isDarkMode ? "dark-btn" : "light-btn"}`}
+				>
+					{`${isDarkMode ? "Light Mode" : "Dark Mode"}`}
+				</button>
+			</div>
 			<Library audioRef={audioRef} />
 			<audio
 				ref={audioRef}
@@ -75,6 +93,7 @@ const mapStateToProp = (state) => {
 		songInfo: state.songInfo,
 		isplaying: state.isplaying,
 		isLibrary: state.isLibrary,
+		isDarkMode: state.isDarkMode,
 	};
 };
 
@@ -83,4 +102,5 @@ export default connect(mapStateToProp, {
 	setCurrentTime,
 	setDuration,
 	setPercentage,
+	setDarkMode,
 })(App);

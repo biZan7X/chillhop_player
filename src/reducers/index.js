@@ -49,10 +49,17 @@ const isLibraryReducer = (state = false, action) => {
 	return state;
 };
 
+const isDarkModeReducer = (state = false, action) => {
+	if (action.type === "setDarkMode") return action.payload;
+
+	return state;
+};
+
 export default combineReducers({
 	songsList: data, //* static data
 	currentSong: currentSongReducer,
 	songInfo: songInfoReducer,
 	isplaying: isPlayingReducer,
 	isLibrary: isLibraryReducer,
+	isDarkMode: isDarkModeReducer,
 });

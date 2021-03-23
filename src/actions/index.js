@@ -1,10 +1,3 @@
-export const setSongsList = (songs) => {
-	return {
-		type: "setSongsList",
-		payload: songs,
-	};
-};
-
 export const setCurrentSong = (song) => {
 	//! action
 	return {
@@ -44,6 +37,13 @@ export const setIsPlaying = (term) => {
 export const setIsLibrary = (term) => {
 	return {
 		type: "setIsLibrary",
+		payload: term,
+	};
+};
+
+export const setDarkMode = (term) => {
+	return {
+		type: "setDarkMode",
 		payload: term,
 	};
 };
