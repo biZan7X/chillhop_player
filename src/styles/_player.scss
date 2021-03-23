@@ -61,4 +61,13 @@
 		}
 		margin: 1rem 0rem;
 	}
+
+	@media screen and (max-width: 768px) {
+		.display {
+			width: 90%;
+		}
+		.controls {
+			width: 80%;
+		}
+	}
 }

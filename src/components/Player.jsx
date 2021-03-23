@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faPlay,
 	faPause,
-	faStepForward,
-	faStepBackward,
+	faAngleLeft,
+	faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 //&actions
 import { setCurrentTime, setIsPlaying, setCurrentSong } from "../actions";
@@ -88,7 +88,7 @@ const Player = ({
 			<div className="controls">
 				<FontAwesomeIcon
 					onClick={() => skipHandler("backward")}
-					icon={faStepBackward}
+					icon={faAngleLeft}
 					size="2x"
 				/>
 				<FontAwesomeIcon
@@ -98,7 +98,7 @@ const Player = ({
 				/>
 				<FontAwesomeIcon
 					onClick={() => skipHandler("forward")}
-					icon={faStepForward}
+					icon={faAngleRight}
 					size="2x"
 				/>
 			</div>

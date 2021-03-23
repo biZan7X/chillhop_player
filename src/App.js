@@ -26,6 +26,7 @@ function App({
 	setDuration,
 	setPercentage,
 	isplaying,
+	isLibrary,
 }) {
 	//*componentDidMount
 	useEffect(() => {
@@ -52,11 +53,11 @@ function App({
 	const audioRef = useRef();
 
 	return (
-		<div className="container">
+		<div className={`App ${isLibrary ? "library-active" : ""}`}>
 			<Navbar />
 			<SongDetails />
 			<Player audioRef={audioRef} />
-			<Library />
+			<Library audioRef={audioRef} />
 			<audio
 				ref={audioRef}
 				onLoadedMetadata={onTimeUpdateHandler}
@@ -73,6 +74,7 @@ const mapStateToProp = (state) => {
 		currentSong: state.currentSong,
 		songInfo: state.songInfo,
 		isplaying: state.isplaying,
+		isLibrary: state.isLibrary,
 	};
 };
 

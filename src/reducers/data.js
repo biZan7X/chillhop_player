@@ -20,7 +20,7 @@ export const data = () => {
 			audio: "https://mp3.chillhop.com/serve.php/?mp3=10536",
 			color: ["#EAE6D9", "#E3CF72"],
 			id: uuidv4(),
-			active: true,
+			active: false,
 		},
 		{
 			name: "Bloom",

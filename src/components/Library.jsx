@@ -2,11 +2,11 @@ import React from "react";
 import Lists from "./Lists";
 import { connect } from "react-redux";
 
-const Library = ({ isLibrary }) => {
+const Library = ({ isLibrary, audioRef }) => {
 	return (
 		<div className={`library ${isLibrary ? "active" : ""}`}>
 			<h1>Library</h1>
-			<Lists />
+			<Lists audioRef={audioRef} />
 		</div>
 	);
 };

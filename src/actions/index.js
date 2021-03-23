@@ -1,3 +1,10 @@
+export const setSongsList = (songs) => {
+	return {
+		type: "setSongsList",
+		payload: songs,
+	};
+};
+
 export const setCurrentSong = (song) => {
 	//! action
 	return {

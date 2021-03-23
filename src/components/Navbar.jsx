@@ -9,8 +9,11 @@ import { setIsLibrary } from "../actions";
 const Navbar = ({ isLibrary, setIsLibrary }) => {
 	return (
 		<div className="navbar">
-			<h2>Chillhop</h2>
-			<button onClick={() => setIsLibrary(!isLibrary)}>
+			<h2 className="nav-title">Cazz...</h2>
+			<button
+				onClick={() => setIsLibrary(!isLibrary)}
+				className={`${isLibrary ? "nav-active" : ""}`}
+			>
 				Playlist
 				<FontAwesomeIcon className="music" icon={faMusic} />
 			</button>
