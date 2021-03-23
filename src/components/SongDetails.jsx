@@ -4,12 +4,16 @@ import { connect } from "react-redux";
 //& actions
 import { setCurrentSong } from "../actions";
 
-const SongDetails = ({ songsList, currentSong, setCurrentSong }) => {
+const SongDetails = ({ currentSong, isPlaying }) => {
 	if (!currentSong) return <div>Loading..</div>;
 
 	return (
 		<div className="song-container">
-			<img src={currentSong.cover} alt="songImage" />
+			<img
+				src={currentSong.cover}
+				className={`${isPlaying ? "rotateSong" : ""}`}
+				alt="songImage"
+			/>
 
 			<h2>{currentSong.name}</h2>
 			<h3>{currentSong.artist}</h3>
@@ -18,7 +22,11 @@ const SongDetails = ({ songsList, currentSong, setCurrentSong }) => {
 };
 
 const mapStateToProp = (state) => {
-	return { songsList: state.songsList, currentSong: state.currentSong };
+	return {
+		songsList: state.songsList,
+		currentSong: state.currentSong,
+		isPlaying: state.isplaying,
+	};
 };
 
 export default connect(mapStateToProp, { setCurrentSong })(SongDetails);
