@@ -2,10 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 const DarkModeStyle = createGlobalStyle`
     body{
-        background: black;
+        background: #0D1117;
 		color: #1db954;
 		.library {
-			background: black;
+			background: #0D1117;
 		}
     }
 `;
