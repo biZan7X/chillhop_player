@@ -54,3 +54,13 @@ body {
 		color: white;
 	}
 }
+
+@media screen and (max-width: 768px) {
+	.btn-div {
+		margin-top: 0.2rem;
+
+		.mode-btn {
+			padding: 0.5rem;
+		}
+	}
+}
